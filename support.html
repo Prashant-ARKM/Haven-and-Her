@@ -694,13 +694,6 @@ onAuthStateChanged(auth, (user) => {
     }
     return;
   }
-
-  // If support teen page exists separately
-  if (ageGroup === "teen" && window.location.pathname.includes("support.html")) {
-    window.location.href = "supportteenager.html";
-    return;
-  }
-
   // Profile circle
   const name = user.displayName || user.email;
   profileCircle.textContent = name.charAt(0).toUpperCase();
@@ -737,4 +730,5 @@ window.addEventListener("click", (e) => {
 
 </body>
 </html>
+
 
