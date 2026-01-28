@@ -137,6 +137,52 @@
   height:530px;
 }
 
+    .respond-section {
+  margin-bottom: 28px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 44px;
+  max-height: 160px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--border-soft);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  background: rgba(255,255,255,0.95);
+  resize: none;
+  outline: none;
+  overflow: hidden;
+  transition: border 0.2s ease;
+}
+
+textarea:focus {
+  border-color: var(--accent);
+}
+
+.ai-soft-btn {
+  margin-top: 12px;
+  padding: 10px 18px;
+  border-radius: 18px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.ai-response {
+  margin-top: 16px;
+  padding: 20px;
+  border-radius: 18px;
+  background: rgba(79,127,214,0.15);
+  line-height: 1.6;
+  font-size: 15px;
+  min-height: 80px;
+}
+
+
 
 
     .card {
@@ -334,10 +380,17 @@
       </div>
 
       <!-- Overlay -->
-      <div class="expanded" id="expanded">
-        <button class="back-btn" onclick="closeCard()">← Back</button>
-        <div id="expandedBody"></div>
-      </div>
+      <div class="expanded-content" id="expandedContent">
+
+  <div class="expanded-bg" id="expandedBg"></div>
+
+  <div class="expanded-inner">
+    <button class="back-btn" onclick="closeCard()">← Back</button>
+    <div id="expandedBody"></div>
+  </div>
+
+</div>
+
 
     </div>
 
@@ -431,69 +484,75 @@ window.addEventListener("click", (e) => {
 
 /* ------------------- STATIC CONTENT (UNCHANGED) ------------------- */
 const data = {
-  notice: `
-    <h2>What I’m Noticing</h2>
-    <p>
-      Withdrawal, irritability, exhaustion,
-      or emotional distance often signal
-      overload or discomfort.
-    </p>
-    <p>
-      These behaviours usually reflect struggle —
-      not attitude or unwillingness.
-    </p>
+ notice: `
+<h2>What I’m Noticing</h2>
 
-    <div style="margin-top:20px;">
-      <textarea id="teenNoticeInput"
-        placeholder="Describe what you're noticing..."
-        style="width:100%; padding:10px; border-radius:12px;"></textarea>
+<div class="respond-section">
+  <p>
+    Withdrawal, irritability, exhaustion,
+    or emotional distance often signal overload or discomfort.
+  </p>
+  <p>
+    These behaviours usually reflect struggle —
+    not attitude or unwillingness.
+  </p>
+</div>
 
-      <button id="teenNoticeBtn"
-        style="margin-top:10px; padding:8px 14px; border:none; border-radius:12px; background:#4f7fd6; color:white; cursor:pointer;">
-        Help me understand
-      </button>
+<div class="respond-section">
+  <textarea id="teenNoticeInput"
+    placeholder="Describe what you're noticing..."></textarea>
 
-      <div id="teenNoticeResponse" style="margin-top:15px;"></div>
-    </div>
-  `,
+  <button id="teenNoticeBtn" class="ai-soft-btn">
+    Help me understand
+  </button>
+</div>
+
+<div class="respond-section">
+  <div id="teenNoticeResponse" class="ai-response"></div>
+</div>
+`,
+
 
   act: `
-    <h2>What to Do Now</h2>
-    <p>
-      Stay calm. Listen without correcting.
-      Reduce pressure wherever possible.
-    </p>
-    <p>
-      If concern continues, gently suggest
-      rest or professional support —
-      without forcing or blaming.
-    </p>
+<h2>What to Do Now</h2>
 
-    <div style="margin-top:20px;">
-      <textarea id="teenRespondInput"
-        placeholder="Describe the situation..."
-        style="width:100%; padding:10px; border-radius:12px;"></textarea>
+<div class="respond-section">
+  <p>
+    Stay calm. Listen without correcting.
+    Reduce pressure wherever possible.
+  </p>
+  <p>
+    If concern continues, gently suggest
+    rest or professional support —
+    without forcing or blaming.
+  </p>
+</div>
 
-      <button id="teenRespondBtn"
-        style="margin-top:10px; padding:8px 14px; border:none; border-radius:12px; background:#4f7fd6; color:white; cursor:pointer;">
-        Help me respond
-      </button>
+<div class="respond-section">
+  <textarea id="teenRespondInput"
+    placeholder="Describe the situation..."></textarea>
 
-      <div id="teenRespondResponse" style="margin-top:15px;"></div>
-    </div>
-  `
+  <button id="teenRespondBtn" class="ai-soft-btn">
+    Help me respond
+  </button>
+</div>
+
+<div class="respond-section">
+  <div id="teenRespondResponse" class="ai-response"></div>
+</div>
+`
 };
 
 
 /* ------------------- CARD LOGIC ------------------- */
 function openCard(key) {
   document.getElementById("expandedBody").innerHTML = data[key];
-  document.getElementById("expanded").classList.add("active");
+ document.getElementById("expandedContent").classList.add("active");
   document.getElementById("cards").style.pointerEvents = "none";
 }
 
 function closeCard() {
-  document.getElementById("expanded").classList.remove("active");
+  document.getElementById("expandedContent").classList.remove("active");
   document.getElementById("cards").style.pointerEvents = "auto";
 }
 
@@ -591,5 +650,6 @@ ${input}
 
 </body>
 </html>
+
 
 
