@@ -670,23 +670,42 @@ const profileDropdown = document.getElementById("profileDropdown");
 onAuthStateChanged(auth, (user) => {
   if (!user) {
     window.location.href = "login.html";
-  } else {
-
-    // 🔹 Setup Check
-    const relation = localStorage.getItem("relation");
-    const ageGroup = localStorage.getItem("ageGroup");
-
-    if (!relation || !ageGroup) {
-      window.location.href = "setup.html";
-      return;
-    }
-
-    // 🔹 Profile Letter
-    const name = user.displayName || user.email;
-    const firstLetter = name.charAt(0).toUpperCase();
-    profileCircle.textContent = firstLetter;
+    return;
   }
+
+  const mode = localStorage.getItem("mode");
+  const relation = localStorage.getItem("relation");
+  const ageGroup = localStorage.getItem("ageGroup");
+
+  // If setup incomplete
+  if (!mode || !ageGroup) {
+    window.location.href = "setup.html";
+    return;
+  }
+
+  // If user selected "For Me", redirect properly
+  if (mode !== "support") {
+    if (ageGroup === "teen") {
+      window.location.href = "for-me-teenage.html";
+    } else if (ageGroup === "adult") {
+      window.location.href = "for-me-adult.html";
+    } else if (ageGroup === "midlife") {
+      window.location.href = "for-me-menopause.html";
+    }
+    return;
+  }
+
+  // If support teen page exists separately
+  if (ageGroup === "teen" && window.location.pathname.includes("support.html")) {
+    window.location.href = "supportteenager.html";
+    return;
+  }
+
+  // Profile circle
+  const name = user.displayName || user.email;
+  profileCircle.textContent = name.charAt(0).toUpperCase();
 });
+
 // 🚪 Logout Function
 window.logout = function() {
   signOut(auth).then(() => {
