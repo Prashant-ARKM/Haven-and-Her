@@ -134,31 +134,40 @@
   </div>
 
   <script>
+// Prefill if data exists
+window.addEventListener("DOMContentLoaded", () => {
+  const savedMode = localStorage.getItem("mode");
+  const savedAge = localStorage.getItem("ageGroup");
+  const savedRelation = localStorage.getItem("relation");
+
+  if (savedMode) document.getElementById("mode").value = savedMode;
+  if (savedAge) document.getElementById("age").value = savedAge;
+  if (savedRelation && savedRelation !== "self") {
+    document.getElementById("relation").value = savedRelation;
+  }
+});
     function saveSetup() {
-      const mode = document.getElementById("mode").value;
-      const age = document.getElementById("age").value;
-      const relation = document.getElementById("relation").value;
+  const mode = document.getElementById("mode").value;
+  const age = document.getElementById("age").value;
+  const relation = document.getElementById("relation").value;
 
-      if (!mode || !age) {
-        alert("Please select how you are using this space and the life stage.");
-        return;
-      }
+  if (!mode || !age) {
+    alert("Please select how you are using this space and the life stage.");
+    return;
+  }
 
-      localStorage.setItem("mode", mode);
-      localStorage.setItem("ageGroup", age);
-      localStorage.setItem("relation", relation || "self");
+  localStorage.setItem("mode", mode);
+  localStorage.setItem("ageGroup", age);
 
-      if (mode === "forme") {
-        if (age === "teen") {
-          window.location.href = "for-me-teenage.html";
-        } else if (age === "adult") {
-          window.location.href = "for-me-adult.html";
-        } else if (age === "midlife") {
-          window.location.href = "for-me-menopause.html";
-        }
-      } else {
-        window.location.href = "support.html";
-      }
+  if (mode === "support") {
+    localStorage.setItem("relation", relation || "unspecified");
+  } else {
+    localStorage.removeItem("relation");
+  }
+
+  // Always route through login
+  window.location.href = "login.html";
+}
 
     }
   </script>
