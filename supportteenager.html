@@ -549,14 +549,15 @@ function openCard(key) {
   document.getElementById("expandedBody").innerHTML = data[key];
  document.getElementById("expandedContent").classList.add("active");
   document.getElementById("cards").style.pointerEvents = "none";
-  document.getElementById("cards").style.opacity = "0.2";
+  
+  document.getElementById("cards").style.opacity = "1";
 
 }
 
 function closeCard() {
   document.getElementById("expandedContent").classList.remove("active");
   document.getElementById("cards").style.pointerEvents = "auto";
-  document.getElementById("cards").style.opacity = "1";
+  document.getElementById("cards").style.opacity = "0.2";
 
 }
 
@@ -649,6 +650,7 @@ ${input}
 </script>
 </body>
 </html>
+
 
 
 
