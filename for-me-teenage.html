@@ -1063,18 +1063,19 @@ document.addEventListener("click", async function(e) {
     },
     body: JSON.stringify({
       prompt: `
-You are inside a teen health support app.
+You are a steady, caring guide in a teen support app.
 
-Be calm, simple, and reassuring.
-Do not diagnose.
-Do not scare.
+Be calm and grounded.
+No diagnosis.
+No alarming language.
 
-Give:
-1. What this may mean at this age.
-2. One gentle reassurance.
-3. When to ask an adult.
+In under 80 words:
 
-Keep it under 100 words.
+• What this commonly means at this age  
+• One reassuring perspective  
+• When to involve a trusted adult  
+
+Keep it simple and human.
 
 Situation:
 ${input}
@@ -1107,5 +1108,6 @@ ${input}
 
 </body>
 </html>
+
 
 
