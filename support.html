@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <title>Haven&Her – To Support Someone</title>
-    <link rel="icon" type="image/png" href="projectlogo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Fonts -->
@@ -34,8 +33,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+  overflow-x: hidden;
 
-      overflow: hidden;
+
     }
 
     /* background shapes */
@@ -135,7 +135,6 @@
   flex-direction: column;
   gap: 24px;
   position: relative;
-  height:530px;
 }
 
     .respond-section {
@@ -207,12 +206,13 @@ textarea:focus {
       box-shadow: 0 14px 28px rgba(79,127,214,0.22);
     }
 
-    .card img {
-  height: 120px;
+.card img {
+  height: 160px;
   width: 100%;
   object-fit: cover;
-  flex-shrink: 0;
+  display: block;
 }
+
 
 
 
@@ -410,15 +410,9 @@ textarea:focus {
 <script type="module">
 
 /* ------------------- IMPORTS ------------------- */
-import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut }
 from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-
-
-/* ------------------- GEMINI ------------------- */
-const genAI = new GoogleGenerativeAI("AIzaSyC_QMze2rwPX4WdlgGhcTHNYIOiUusQgdI");
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 
 /* ------------------- FIREBASE ------------------- */
@@ -449,7 +443,7 @@ onAuthStateChanged(auth, (user) => {
   const mode = localStorage.getItem("mode");
   const ageGroup = localStorage.getItem("ageGroup");
 
-  if (mode !== "support" ) {
+  if (mode !== "support" || ageGroup !== "teen") {
   window.location.replace("setup.html");
   return;
 }
@@ -601,7 +595,14 @@ document.addEventListener("click", async function(e) {
 
     const relation = localStorage.getItem("relation") || "family member";
 
-    const result = await model.generateContent(`
+    const response = await fetch("http://localhost:5000/api/generate", {
+
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    prompt: `
 You are inside a teen support app.
 
 The user is a ${relation}.
@@ -620,9 +621,21 @@ Explain briefly:
 
 Situation:
 ${input}
-`);
+`
+  })
+});
 
- const text = result.response.text();
+const data = await response.json();
+
+if (!data.reply) {
+  console.error("Backend error:", data);
+  output.innerHTML = "Server error. Check backend console.";
+  return;
+}
+
+const text = data.reply;
+
+
 
 const formatted = text
   .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
@@ -648,7 +661,14 @@ output.innerHTML = formatted;
 
     const relation = localStorage.getItem("relation") || "family member";
 
-    const result = await model.generateContent(`
+    const response = fetch("http://localhost:5000/api/generate", {
+
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    prompt: `
 You are inside a teen support app.
 
 The user is a ${relation}.
@@ -665,9 +685,21 @@ Keep it natural.
 
 Situation:
 ${input}
-`);
+`
+  })
+});
 
-    const text = result.response.text();
+const data = await response.json();
+
+if (!data.reply) {
+  console.error("Backend error:", data);
+  output.innerHTML = "Server error. Check backend console.";
+  return;
+}
+
+const text = data.reply;
+
+
 
 const formatted = text
   .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
