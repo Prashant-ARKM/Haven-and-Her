@@ -443,7 +443,7 @@ onAuthStateChanged(auth, (user) => {
   const mode = localStorage.getItem("mode");
   const ageGroup = localStorage.getItem("ageGroup");
 
-  if (mode !== "support" || ageGroup !== "teen") {
+  if (mode !== "support" ) {
   window.location.replace("setup.html");
   return;
 }
@@ -713,6 +713,7 @@ output.innerHTML = formatted;
 </script>
 </body>
 </html>
+
 
 
 
