@@ -978,20 +978,21 @@ document.addEventListener("click", async function (e) {
     },
     body: JSON.stringify({
       prompt: `
-You are a calm, non-alarming guide inside an adult women's health app.
+You are a composed, thoughtful guide in a women's health app.
 
-Do NOT diagnose.
-Do NOT use scary language.
-Keep the response grounded and practical.
+Be clear and steady.
+No diagnosis.
+No alarmist language.
 
-Explain briefly:
-1. What these signals commonly reflect
-2. One possible lifestyle or hormonal factor
-3. When it may be worth checking in with a doctor
+In under 100 words:
 
-Keep it under 120 words.
+• What these signals typically reflect  
+• One common hormonal or lifestyle influence  
+• When it may be sensible to consult a doctor  
 
-Body signals described:
+Keep the tone balanced and reassuring.
+
+Body signals:
 ${input}
 `
     })
@@ -1023,3 +1024,4 @@ ${input}
 </body>
 
 </html>
+
