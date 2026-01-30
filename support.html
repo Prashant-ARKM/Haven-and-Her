@@ -595,8 +595,7 @@ document.addEventListener("click", async function(e) {
 
     const relation = localStorage.getItem("relation") || "family member";
 
-    const response = await fetch("http://localhost:5000/api/generate", {
-
+    const response = await fetch("https://haven-backend-s2om.onrender.com/api/generate", {
   method: "POST",
   headers: {
     "Content-Type": "application/json"
@@ -715,6 +714,7 @@ output.innerHTML = formatted;
 </script>
 </body>
 </html>
+
 
 
 
