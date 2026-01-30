@@ -602,12 +602,6 @@ textarea {
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut }
 from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
-
-/* --- Gemini setup (add ONCE if not already present) --- */
-const genAI = new GoogleGenerativeAI("YOUR_API_KEY");
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-
 /* --- Is This Normal (Midlife) AI --- */
 document.addEventListener("click", async function (e) {
 
@@ -625,7 +619,14 @@ document.addEventListener("click", async function (e) {
     output.innerHTML = "Thinking…";
 
     try {
-      const result = await model.generateContent(`
+
+      const response = await fetch("https://haven-backend-s2om.onrender.com/api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          prompt: `
 You are a calm, reassuring guide in a menopause support app.
 
 Do NOT diagnose.
@@ -637,14 +638,36 @@ Explain:
 2. One hormonal or body-related reason
 3. When it may be worth speaking to a healthcare professional
 
+Keep it under 120 words.
+
 Experience described:
 ${input}
-`);
+`
+        })
+      });
 
-      output.innerHTML =
-        result.response.text().replace(/\\n/g, "<br>");
+      const textResponse = await response.text();
+
+      let data;
+
+      try {
+        data = JSON.parse(textResponse);
+      } catch {
+        output.innerHTML = "Server error. Please try again.";
+        return;
+      }
+
+      if (!data.reply) {
+        output.innerHTML = "Something went wrong.";
+        return;
+      }
+
+      output.innerHTML = data.reply
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+        .replace(/\n/g, "<br>");
 
     } catch (err) {
+      console.error(err);
       output.innerHTML =
         "Something went wrong. Please try again in a moment.";
     }
@@ -652,7 +675,6 @@ ${input}
     output.classList.remove("loading");
   }
 });
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyBXEUA6m10uR0-pTV4IewWmUxTVU-_8cfs",
@@ -946,3 +968,4 @@ window.toggleCheckin = function (item) {
 
 </body>
 </html>
+
