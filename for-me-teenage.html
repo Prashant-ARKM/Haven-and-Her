@@ -983,14 +983,21 @@ window.addEventListener("click", (e) => {
 window.analyzeOff = function () {
   const duration = document.getElementById("offDuration").value;
 
-  const symptomCount = [
-    s_tired, s_dizzy, s_headache, s_weak,
-    s_mood, s_focus, s_nausea, s_notme
-  ].filter(el => document.getElementById(el.id).checked).length;
+const symptomIds = [
+  "s_tired", "s_dizzy", "s_headache", "s_weak",
+  "s_mood", "s_focus", "s_nausea", "s_notme"
+];
 
-  const lifeImpact = [
-    d_school, d_focus, d_sleep, d_food, d_social
-  ].filter(el => document.getElementById(el.id).checked).length;
+const symptomCount = symptomIds
+  .filter(id => document.getElementById(id).checked).length;
+
+const impactIds = [
+  "d_school", "d_focus", "d_sleep", "d_food", "d_social"
+];
+
+const lifeImpact = impactIds
+  .filter(id => document.getElementById(id).checked).length;
+
 
   let title = "";
   let explanation = "";
@@ -1100,4 +1107,5 @@ ${input}
 
 </body>
 </html>
+
 
