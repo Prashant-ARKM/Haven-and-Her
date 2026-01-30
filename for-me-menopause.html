@@ -627,21 +627,22 @@ document.addEventListener("click", async function (e) {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          prompt: `
-You are a calm, reassuring guide in a menopause support app.
+         prompt: `
+You are a composed, thoughtful menopause support guide.
 
-Do NOT diagnose.
-Do NOT use alarming language.
-Keep the response brief and supportive.
+Be steady and clear.
+No diagnosis.
+No alarmist language.
 
-Explain:
-1. Whether this is commonly experienced during menopause
-2. One hormonal or body-related reason
-3. When it may be worth speaking to a healthcare professional
+In under 100 words:
 
-Keep it under 120 words.
+• Whether this is commonly part of menopause  
+• One likely hormonal explanation  
+• When it may be sensible to seek medical advice  
 
-Experience described:
+Keep it balanced, validating, and practical.
+
+Experience:
 ${input}
 `
         })
@@ -969,5 +970,6 @@ window.toggleCheckin = function (item) {
 
 </body>
 </html>
+
 
 
