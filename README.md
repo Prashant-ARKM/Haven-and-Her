@@ -1,104 +1,62 @@
-# Haven-and-Her
+# **Haven-and-Her**
 
 **Live Demo:** [https://prashant-arkm.github.io/Haven-and-Her/](https://prashant-arkm.github.io/Haven-and-Her/)
 **Demo Video:** [https://youtu.be/QPj0Bxt1P7E](https://youtu.be/QPj0Bxt1P7E)
 
-## Table of Contents
+## **About**
 
-* About
-* Features
-* Problem Statement
-* How It Works
-* Screenshots
-* Tech Stack
-* How to Run Locally
-* Contributing
-* License
+Haven-and-Her is a lightweight women’s health companion web platform focused on menstrual health awareness, understanding body changes, and providing supportive guidance across different life stages — from teenage years to adulthood and menopause. It aims to normalize conversations about menstrual health and help users recognize meaningful symptoms before issues escalate. ([GitHub][1])
 
 ---
 
-## About
+## **Features**
 
-**Haven-and-Her** is a women’s health companion web platform focused on **menstrual health awareness and support**. It provides a calm, supportive space for users to learn about menstrual health across different life stages — from teenage years to adulthood and menopause. The platform emphasizes **understanding, early attention, and empathetic care**, helping users notice meaningful changes and act before issues escalate. ([prashant-arkm.github.io][1])
-
----
-
-## Features
-
-* **Menstrual Health Guidance:** Learn about symptoms, cycle changes, and indicators that matter. ([prashant-arkm.github.io][1])
-* **Personalized Perspectives:** Content tailored **for personal understanding** and **to support someone else**. ([prashant-arkm.github.io][1])
-* **Life-Stage Coverage:** Information and support across **teenage**, **adult**, and **menopausal** stages. ([prashant-arkm.github.io][1])
-* **Smooth Navigation:** Simple UI guiding users to relevant areas based on their focus. ([prashant-arkm.github.io][1])
+* Menstrual health guidance with clarity on symptoms and cycle changes. ([GitHub][1])
+* Personalized content to help understand your own body or support someone else. ([GitHub][1])
+* Information tailored for teens, adults, and menopausal stages. ([GitHub][1])
+* Simple and intuitive navigation through relevant topics. ([GitHub][1])
 
 ---
 
-## Problem Statement
+## **Problem Statement**
 
-Menstrual health issues are often overlooked or dismissed as “normal” or stress-related. Many people struggle to understand changes in their body, and families may lack the language or knowledge to respond empathetically. Haven-and-Her aims to **normalize conversations** about menstrual health and provide clear guidance on what signs matter and when to act. ([prashant-arkm.github.io][1])
-
----
-
-## How It Works
-
-1. **Home Landing:** Presents the core mission — “You’re not imagining it. And you don’t have to face it alone.” ([prashant-arkm.github.io][1])
-2. **Choose Your Path:** Users can select:
-
-   * **For Me** — focus on personal cycle and body changes. ([prashant-arkm.github.io][1])
-   * **To Support Someone** — guidance on supporting others with menstrual health concerns. ([prashant-arkm.github.io][1])
-3. **Explore Content:** The site then walks users through explanations about common menstrual health topics, early warning signs, and recommended actions. ([prashant-arkm.github.io][1])
+Many people struggle to understand changes in menstrual health and often dismiss symptoms as “stress” or “normal.” Haven-and-Her provides clear, empathetic guidance so users can spot meaningful changes, learn what they mean, and act appropriately rather than feeling alone or confused. ([GitHub][1])
 
 ---
 
-## Screenshots
+## **How It Works**
 
-*(Include screenshots or placeholders from the repo images as needed)*
+1. **Landing Page:** Welcomes users with supportive messaging. ([GitHub][1])
+2. **Choose a Path:** Users select whether they want info for themselves or to support someone else. ([GitHub][1])
+3. **Explore Topics:** Navigate through structured health content on menstrual changes, signs to watch for, and what actions to consider. ([GitHub][1])
 
 ---
 
-## Tech Stack
+## **Tech Stack**
 
 * HTML
 * CSS
 * JavaScript
-  *(Based on languages in repo statistics)* ([GitHub][2])
+  *(Static frontend web application)* ([GitHub][1])
 
 ---
 
-## How to Run Locally
+## **How to Run Locally**
 
-1. **Clone the repository**
+Since this is a static web project:
 
-   ```bash
-   git clone https://github.com/iammissmiller/Haven-and-Her.git
-   ```
-
-2. **Open Jekyll/HTML pages**
-
-   * Since this is purely static (HTML/CSS/JS), open `index.html` in your browser.
-
-3. **(Optional) Serve with Live Server**
+1. Clone the repository
 
    ```bash
-   npm install -g live-server
-   live-server
+   git clone https://github.com/Prashant-ARKM/Haven-and-Her.git
    ```
+2. Open the `index.html` file in your browser.
 
----
+Optionally, you can serve locally with a simple server like **Live Server**:
 
-## Contributing
-
-Contributions are welcome! You can:
-
-* Improve UI/UX
-* Add more informative content
-* Fix bugs
-* Enhance accessibility
-
-To contribute:
-
-1. Fork the repo
-2. Create a new branch
-3. Make your changes and commit
-4. Submit a pull request
+```bash
+npm install -g live-server
+live-server
+```
 
 ---
